@@ -1,26 +1,72 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* تنظیمات Theme */
+@theme {
+  --color-dark: #0f172a;
+  --color-surface: #1e293b;
+  --color-team-blue: #3b82f6;
+  --color-team-red: #ef4444;
+
+  --font-family-sans:
+    var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* استایل‌های پایه */
+body {
+  background-color: var(--color-dark);
+  color: #e2e8f0;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* استایل‌های شیشه‌ای */
+.glass-timer {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-blue {
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(30, 41, 59, 0.4) 100%
+  );
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.05);
+}
+
+.glass-red {
+  background: linear-gradient(
+    180deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(30, 41, 59, 0.4) 100%
+  );
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.05);
+}
+
+/* استایل رنک‌ها */
+.rank-1 {
+  color: #fcd34d;
+  text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
+}
+
+.rank-2 {
+  color: #94a3b8;
+}
+
+.rank-3 {
+  color: #b45309;
 }
