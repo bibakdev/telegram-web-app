@@ -1,20 +1,24 @@
 'use client';
-
 import { useTelegramWebApp } from '@/hooks/useTelegramWebApp';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export default function Home() {
+export default function TelegramApp() {
   const { webApp, user, isReady } = useTelegramWebApp();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    console.log('isReady:', isReady);
+    console.log('user:', user);
+    console.log('webApp:', webApp);
+    console.log('Telegram object:', (window as any).Telegram);
+  }, [isReady, user, webApp]);
 
-  if (!mounted || !isReady) {
+  if (!isReady) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>در حال بارگذاری...</p>
+        <div className="text-center">
+          <p className="text-lg mb-2">در حال بارگذاری...</p>
+          <p className="text-sm text-gray-500">isReady: {String(isReady)}</p>
+        </div>
       </div>
     );
   }
@@ -22,7 +26,13 @@ export default function Home() {
   if (!user) {
     return (
       <div className="p-6 text-center min-h-screen flex flex-col justify-center">
-        <p className="text-lg">⚠️ لطفاً از داخل تلگرام باز کنید</p>
+        <p className="text-lg mb-2">⚠️ کاربر یافت نشد</p>
+        <p className="text-sm text-gray-600">
+          لطفاً این اپلیکیشن را از داخل تلگرام باز کنید
+        </p>
+        <p className="text-xs text-gray-400 mt-4">
+          Console را برای جزئیات بیشتر چک کنید
+        </p>
       </div>
     );
   }
@@ -51,9 +61,11 @@ export default function Home() {
             <span>{user.id}</span>
           </div>
           {user.is_premium && (
-            <span className="inline-block bg-blue-500 text-white px-4 py-2 rounded-full">
-              Premium ⭐
-            </span>
+            <div className="mt-4 text-center">
+              <span className="inline-block bg-blue-500 text-white px-4 py-2 rounded-full text-sm">
+                Premium ⭐
+              </span>
+            </div>
           )}
         </div>
       </div>
